@@ -17,16 +17,9 @@
   },
   "plugins": ["@typescript-eslint", "prettier"],
   "rules": {
-    "prettier/prettier": [
-      "error",
-      {},
-      {
-        "fileInfoOptions": {
-          "withNodeModules": true
-        }
-      }
-    ],
+    "prettier/prettier": "error",
     "arrow-body-style": "off",
-    "prefer-arrow-callback": "off"
+    "prefer-arrow-callback": "off",
+    "endOfLine": "auto"
   }
 }
