@@ -1,6 +1,6 @@
 import { Router } from 'express';
-import { createScoreboardController } from '../modules/scoreboard/Usecases/createScoreboard/';
-import { listScoreboardController } from '../modules/scoreboard/Usecases/listScoreboard/';
+import { createScoreboardController } from '../modules/scoreboard/useCase/createScoreboard';
+import { listScoreboardController } from '../modules/scoreboard/useCase/listScoreboard';
 export const scoreBoardRoutes = Router();
 
 scoreBoardRoutes.post('/', (req, res) => {
