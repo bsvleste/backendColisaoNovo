@@ -1,5 +1,5 @@
 import { ListScoreboardUseCase } from './ListScoreboardUseCase';
-import { ScoreboardRepository } from '../../repositories/ScoreboardRepository';
+import { ScoreboardRepository } from '../../repositories/implementations/ScoreboardRepository';
 import { ListScoreboardController } from './ListScoreboardController';
 
 const scoreboardRepository = ScoreboardRepository.getInstace();

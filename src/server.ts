@@ -1,11 +1,15 @@
 import express from 'express';
-import { scoreBoardRoutes } from './routes/scoreboard.routes';
+import { router } from './routes';
+import swaggerUI from 'swagger-ui-express';
+import swaggerFile from './swagger.json';
+
 const app = express();
 
 app.use(express.json());
-app.use('/scoreboards', scoreBoardRoutes);
+app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerFile));
+app.use(router);
 app.listen(3333, () =>
   console.log(
-    'Servidor HTTP online❤parei na aula Iniciando a API/04 - Continuação da aplicação/aula06'
+    'Servidor HTTP online❤parei na aula Capituo3/continuando aplaicação/trabalhando bd/'
   )
 );

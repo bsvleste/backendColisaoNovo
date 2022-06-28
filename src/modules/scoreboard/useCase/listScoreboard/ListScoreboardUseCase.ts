@@ -1,5 +1,5 @@
 import { Scoreboard } from '../../model/Scoreboard';
-import { IScoreboardRepository } from '../../repositories/IScoreboardRepository';
+import { IScoreboardRepository } from './../../repositories/IScoreboardRepository';
 
 export class ListScoreboardUseCase {
   constructor(private ScoreboardRepository: IScoreboardRepository) {}

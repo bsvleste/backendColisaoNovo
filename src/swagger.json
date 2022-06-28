@@ -1,0 +1,82 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Backendcolisao documentation",
+    "description": "this is a api colisao",
+    "version": "1.0.0",
+    "contact": {
+      "email": "bvaleiro@gmail.com"
+    }
+  },
+  "paths": {
+    "/scoreboards": {
+      "post": {
+        "tags": ["Scoreboard"],
+        "summary": "Create a scoreboard",
+        "description": "Create a new scoreboard",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": { "type": "object" },
+              "properties": {
+                "dataPartida": { "type": "string" },
+                "segundoQuadro": {
+                  "segundoColisao": { "type": "Number" },
+                  "segundoAdversario": { "type": "Number" }
+                },
+                "primeiroQuadro": {
+                  "primeiroColisao": { "type": "Number" },
+                  "primeiroAdversario": { "type": "Number" }
+                }
+              },
+              "example": {
+                "dataPartida": "2022-07-13",
+                "segundoQuadro": {
+                  "segundoColisao": 0,
+                  "segundoAdversario": 2
+                },
+                "primeiroQuadro": {
+                  "primeiroColisao": 8,
+                  "primeiroAdversario": 2
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Create a new scoreboard"
+          },
+          "500": {
+            "description": "Scoreboard already exists "
+          }
+        }
+      },
+      "get": {
+        "tags": ["Scoreboard"],
+        "summary": "list all scoreboard",
+        "description": "List all scoreboard",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "dataPartida": { "type": "string" },
+                      "segundoQuadro": { "type": "object" },
+                      "primeiroQuadro": { "type": "object" }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
