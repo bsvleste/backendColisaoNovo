@@ -12,14 +12,14 @@ interface IRequest {
   };
 }
 export class CreateScoreboardUseCase {
-  constructor(private ScoreboardRepository: IScoreboardRepository) {}
-  execute({ dataPartida, segundoQuadro, primeiroQuadro }: IRequest): void {
-    const ScoreboardAlreadyExists =
-      this.ScoreboardRepository.findByData(dataPartida);
-    if (ScoreboardAlreadyExists) {
-      throw new Error('Scoreboard ja Existe');
+  constructor(private scoreboardRepository: IScoreboardRepository) {}
+ async execute({ dataPartida, segundoQuadro, primeiroQuadro }: IRequest): Promise<void> {
+    const scoreboardAlreadyExists = await this.scoreboardRepository.findByData(dataPartida);
+    if (scoreboardAlreadyExists) {
+      throw new Error('Category already exists');
     }
-    this.ScoreboardRepository.create({
+    
+    this.scoreboardRepository.create({
       dataPartida,
       segundoQuadro,
       primeiroQuadro,

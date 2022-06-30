@@ -3,7 +3,8 @@ import { Request, Response } from 'express';
 
 export class ListScoreboardController {
   constructor(private listScoreboard: ListScoreboardUseCase) {}
-  handle(req: Request, res: Response): Response {
-    return res.status(201).json(this.listScoreboard.execute());
+  async handle(req: Request, res: Response): Promise<Response> {
+    const listScoreboards = await this.listScoreboard.execute();
+    return res.status(201).json(listScoreboards);
   }
 }

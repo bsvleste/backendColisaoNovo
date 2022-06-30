@@ -1,10 +1,10 @@
-import { Scoreboard } from '../../model/Scoreboard';
+import { Scoreboard } from '../../entity/Scoreboard';
 import { IScoreboardRepository } from './../../repositories/IScoreboardRepository';
 
 export class ListScoreboardUseCase {
   constructor(private ScoreboardRepository: IScoreboardRepository) {}
-  execute(): Scoreboard[] {
-    const scoreboardes = this.ScoreboardRepository.list();
+  async execute(): Promise<Scoreboard[]> {
+    const scoreboardes = await this.ScoreboardRepository.list();
     return scoreboardes;
   }
 }

@@ -1,4 +1,4 @@
-import { Scoreboard } from './../model/Scoreboard';
+import { Scoreboard } from './../entity/Scoreboard';
 export interface ICreateScoreboardDTO {
   dataPartida: string;
   segundoQuadro: {
@@ -11,11 +11,11 @@ export interface ICreateScoreboardDTO {
   };
 }
 export interface IScoreboardRepository {
-  findByData(dataPartida: string): Scoreboard;
-  list(): Scoreboard[];
+  findByData(dataPartida: string): Promise<Scoreboard>;
+  list(): Promise<Scoreboard[]>;
   create({
     dataPartida,
     segundoQuadro,
     primeiroQuadro,
-  }: ICreateScoreboardDTO): void;
+  }: ICreateScoreboardDTO): Promise<void>;
 }

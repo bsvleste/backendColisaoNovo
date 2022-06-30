@@ -1,41 +1,40 @@
-import { Scoreboard } from '../../model/Scoreboard';
+import { connectionMongoDb } from '../../../../database/datasource';
+import { Scoreboard } from '../../entity/Scoreboard';
 import {
   ICreateScoreboardDTO,
   IScoreboardRepository,
 } from '../IScoreboardRepository';
 
 export class ScoreboardRepository implements IScoreboardRepository {
-  private scoreboardes: Scoreboard[];
+  private scoreboardes 
   private static INSTANCE: ScoreboardRepository;
-  private constructor() {
-    this.scoreboardes = [];
+  constructor() {
+    this.scoreboardes = connectionMongoDb.getMongoRepository(Scoreboard)
   }
-  public static getInstace(): ScoreboardRepository {
+  /* public static getInstace(): ScoreboardRepository {
     if (!ScoreboardRepository.INSTANCE) {
       ScoreboardRepository.INSTANCE = new ScoreboardRepository();
     }
     return ScoreboardRepository.INSTANCE;
-  }
-  create({
+  } */
+  async create({
     dataPartida,
     segundoQuadro,
     primeiroQuadro,
-  }: ICreateScoreboardDTO): void {
-    const placar = new Scoreboard();
-    Object.assign(placar, {
+  }: ICreateScoreboardDTO): Promise<void> {
+    const placar = this.scoreboardes.create({
       dataPartida,
       segundoQuadro,
       primeiroQuadro,
-    });
-    this.scoreboardes.push(placar);
+    })
+     await this.scoreboardes.save(placar) 
   }
-  list(): Scoreboard[] {
-    return this.scoreboardes;
+  async list(): Promise<Scoreboard[]> {
+    const listScoreboards = await this.scoreboardes.find();
+    return listScoreboards
   }
-  findByData(data: string): Scoreboard {
-    const findDataPartida = this.scoreboardes.find(
-      (findDataPartida) => findDataPartida.dataPartida === data
-    );
+ async findByData(dataPartida: string): Promise<Scoreboard> {
+    const findDataPartida = await this.scoreboardes.findOneBy({dataPartida})
     return findDataPartida;
   }
 }
