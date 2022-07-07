@@ -1,4 +1,4 @@
-import { ListScoreboardUseCase } from './ListScoreboardUseCase';
+/* import { ListScoreboardUseCase } from './ListScoreboardUseCase';
 import { ScoreboardRepository } from '../../repositories/implementations/ScoreboardRepository';
 import { ListScoreboardController } from './ListScoreboardController';
 
@@ -10,3 +10,4 @@ export default():ListScoreboardController =>{
     );
     return   listScoreboardController ;
   }
+ */

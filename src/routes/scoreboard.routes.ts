@@ -1,13 +1,9 @@
 import { Router } from 'express';
-import  createScoreboardController  from '../modules/scoreboard/useCase/createScoreboard';
-import  listScoreboardController  from '../modules/scoreboard/useCase/listScoreboard';
+import { CreateScoreboardController } from '../modules/scoreboard/useCase/createScoreboard/CreateScoreboardController';
+import { ListScoreboardController } from '../modules/scoreboard/useCase/listScoreboard/ListScoreboardController';
 export const scoreBoardRoutes = Router();
 
-scoreBoardRoutes.post('/', (req, res) => {
-  return createScoreboardController().handle(req, res);
-});
-
-scoreBoardRoutes.get('/', (req, res) => {
-  
- return listScoreboardController().handle(req, res);  
-});
+const createScoreboardController = new CreateScoreboardController();
+const listScoreboardController = new ListScoreboardController();
+scoreBoardRoutes.post('/',createScoreboardController.handle);
+scoreBoardRoutes.get('/',listScoreboardController.handle);

@@ -1,3 +1,4 @@
+import { injectable,inject } from 'tsyringe';
 import { IScoreboardRepository } from '../../repositories/IScoreboardRepository';
 
 interface IRequest {
@@ -11,8 +12,11 @@ interface IRequest {
     primeiroAdversario: string;
   };
 }
+@injectable()
 export class CreateScoreboardUseCase {
-  constructor(private scoreboardRepository: IScoreboardRepository) {}
+  constructor(
+    @inject("ScoreboardRepository")
+    private scoreboardRepository: IScoreboardRepository) {}
  async execute({ dataPartida, segundoQuadro, primeiroQuadro }: IRequest): Promise<void> {
     const scoreboardAlreadyExists = await this.scoreboardRepository.findByData(dataPartida);
     if (scoreboardAlreadyExists) {

@@ -1,9 +1,10 @@
+import "reflect-metadata";
+import './shared/container'
 import 'dotenv/config'
 import express from 'express';
 import { router } from './routes';
 import swaggerUI from 'swagger-ui-express';
 import swaggerFile from './swagger.json';
-import mongoose from 'mongoose';
 import { connectionMongoDb } from './database/datasource';
 const app = express();
 

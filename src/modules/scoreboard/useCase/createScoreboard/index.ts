@@ -1,4 +1,4 @@
-import { ScoreboardRepository } from '../../repositories/implementations/ScoreboardRepository';
+/* import { ScoreboardRepository } from '../../repositories/implementations/ScoreboardRepository';
 import { CreateScoreboardController } from './CreateScoreboardController';
 import { CreateScoreboardUseCase } from './CreateScoreboardUseCase';
 export default():CreateScoreboardController=>{
@@ -13,4 +13,4 @@ export default():CreateScoreboardController=>{
       );
       return  createScoreboardController ;
     }
-      
+       */

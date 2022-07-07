@@ -1,11 +1,13 @@
 import { Request, Response } from 'express';
+import { container } from 'tsyringe';
 import { CreateScoreboardUseCase } from './CreateScoreboardUseCase';
 
 export class CreateScoreboardController {
-  constructor(private createScoreboardUseCase: CreateScoreboardUseCase) {}
-  handle(req: Request, res: Response): Response {
+  
+  async handle(req: Request, res: Response): Promise<Response> {
+    const createScoreboardUseCase = container.resolve(CreateScoreboardUseCase)
     const { dataPartida, segundoQuadro, primeiroQuadro } = req.body;
-    this.createScoreboardUseCase.execute({
+    await createScoreboardUseCase.execute({
       dataPartida,
       segundoQuadro,
       primeiroQuadro,
