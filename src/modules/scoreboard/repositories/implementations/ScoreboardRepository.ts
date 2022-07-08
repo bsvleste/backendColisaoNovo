@@ -37,4 +37,21 @@ export class ScoreboardRepository implements IScoreboardRepository {
     const findDataPartida = await this.scoreboardes.findOneBy({dataPartida})
     return findDataPartida;
   }
+ async findById(id: string): Promise<Scoreboard> {
+    const findById = await this.scoreboardes.findOneBy(id)
+    return findById;
+  }
+  async update({ id, dataPartida, segundoQuadro, primeiroQuadro, }: ICreateScoreboardDTO): Promise<void> {
+     await this.scoreboardes.findOneAndUpdate({id},
+      {
+        $set:{
+          dataPartida,
+          segundoQuadro,
+          primeiroQuadro,
+        }
+      },{
+        upsert: true,
+      }
+    )
+  }
 }

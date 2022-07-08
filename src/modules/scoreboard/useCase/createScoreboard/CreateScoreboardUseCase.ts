@@ -2,6 +2,7 @@ import { injectable,inject } from 'tsyringe';
 import { IScoreboardRepository } from '../../repositories/IScoreboardRepository';
 
 interface IRequest {
+  id?:string,
   dataPartida: string;
   segundoQuadro: {
     segundoColisao: string;

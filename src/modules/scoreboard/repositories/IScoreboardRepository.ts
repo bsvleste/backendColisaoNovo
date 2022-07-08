@@ -1,5 +1,6 @@
 import { Scoreboard } from './../entity/Scoreboard';
 export interface ICreateScoreboardDTO {
+  id?:string,
   dataPartida: string;
   segundoQuadro: {
     segundoColisao: string;
@@ -12,10 +13,17 @@ export interface ICreateScoreboardDTO {
 }
 export interface IScoreboardRepository {
   findByData(dataPartida: string): Promise<Scoreboard>;
+  findById(id: string): Promise<Scoreboard>;
   list(): Promise<Scoreboard[]>;
-  create({
+  update({
+    id,
     dataPartida,
     segundoQuadro,
     primeiroQuadro,
   }: ICreateScoreboardDTO): Promise<void>;
+  create({
+    dataPartida,
+    segundoQuadro,
+    primeiroQuadro,
+  }: ICreateScoreboardDTO): Promise<void>;  
 }
