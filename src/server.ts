@@ -5,6 +5,7 @@ import express from 'express';
 import { router } from './routes';
 import swaggerUI from 'swagger-ui-express';
 import swaggerFile from './swagger.json';
+import  mongoose from 'mongoose'
 import { connectionMongoDb } from './database/datasource';
 const app = express();
 
@@ -15,7 +16,9 @@ connectionMongoDb.initialize()
     .catch((err) => {
         console.error("Error during Data Source initialization:", err)
     })
-
+    /* mongoose.connect(process.env.MONGO_URL,{
+      
+  }); */
 app.use(express.json());
 app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerFile));
 app.use(router);

@@ -22,9 +22,10 @@ export class Scoreboard {
   };
   @CreateDateColumn()
   createAt: Date
-  constructor() {
+  /* constructor() {
     if (!this.id) {
       this.id = uuidv4();
     }
-  }
+  } */
+  
 }

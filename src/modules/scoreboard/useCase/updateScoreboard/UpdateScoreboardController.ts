@@ -5,15 +5,15 @@ import { UpdateScoreboardUseCase } from './UpdateScoreboardUseCase';
 export class UpdateScoreboardController {
   
   async handle(req: Request, res: Response): Promise<Response> {
-    const findById = container.resolve(UpdateScoreboardUseCase)
+    const updateScoreboard = container.resolve(UpdateScoreboardUseCase)
     const id = req.params.id
     const { dataPartida, segundoQuadro, primeiroQuadro } = req.body;
-    const listScoreboards = await findById.execute({
+    await updateScoreboard.execute({
       id,
       dataPartida,
       segundoQuadro,
       primeiroQuadro
-    });    
-    return res.status(201).json(listScoreboards);
+        });    
+    return res.status(201).send("alterado com sucesso");
   }
 }
