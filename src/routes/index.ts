@@ -1,6 +1,5 @@
-import { scoreBoardRoutes } from './scoreboard.routes';
-import { Router } from 'express';
+import { scoreboardRoutes } from './scoreboard.routes'
+import {Router} from 'express'
+export const router = Router()
 
-export const router = Router();
-
-router.use('/scoreboards', scoreBoardRoutes);
+router.use('/scoreboard',scoreboardRoutes)
