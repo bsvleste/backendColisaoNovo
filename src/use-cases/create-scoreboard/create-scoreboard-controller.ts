@@ -7,7 +7,6 @@ export class CreateScoreboardController {
   ) { }
   handle(req: Request, res: Response): Response {
     const { dataPartida, segundoQuadro, primeiroQuadro } = req.body
-
     this.createScoreboardUseCase.execute({
       dataPartida,
       segundoQuadro,

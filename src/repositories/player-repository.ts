@@ -4,8 +4,15 @@ import { IPlayerDTO, IPlayerRespository } from "./i-player-repository";
 
 export class PlayerRepository implements IPlayerRespository {
   private players: Player[]
-  constructor() {
+  private static INTANCE: PlayerRepository
+  private constructor() {
     this.players = []
+  }
+  public static getInstance(): PlayerRepository {
+    if (!PlayerRepository.INTANCE) {
+      PlayerRepository.INTANCE = new PlayerRepository()
+    }
+    return PlayerRepository.INTANCE
   }
   findByEmail(email: string): Player {
     const playerAllreadyExists = this.players.find(player => player.email === email)

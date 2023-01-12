@@ -10,7 +10,7 @@ export class CreatePlayerUseCase {
   execute({ email, name, password, position }: IPlayerDTO): void {
     const playerAllreadExists = this.playerRespository.findByEmail(email)
     if (playerAllreadExists) {
-      throw new AppError("Player allReadyExists")
+      console.log(playerAllreadExists)
     }
     this.playerRespository.create({
       name, email, password, position

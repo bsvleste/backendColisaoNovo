@@ -7,7 +7,7 @@ import { ListPlayersController } from "../use-cases/list-players/list-players-co
 import { ListPlayersUseCase } from "../use-cases/list-players/list-players-use-case";
 
 const playerRouters = Router()
-const playerRepository = new PlayerRepository()
+const playerRepository = PlayerRepository.getInstance()
 const createPlayerUseCase = new CreatePlayerUseCase(playerRepository)
 const createPlayerController = new CreatePlayerController(createPlayerUseCase)
 const listPlayerUseCase = new ListPlayersUseCase(playerRepository)

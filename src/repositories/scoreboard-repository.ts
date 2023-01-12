@@ -1,42 +1,48 @@
 import { Scoreboard } from '../model/Scoreboard'
 import { IScoreboardRepository } from './i-scoreboard-repository'
 
-interface ICreateScoreboardRepositoryPropsDTO{
-    
-	dataPartida:string
-	segundoQuadro:{
-        segundoColisao:string,
-        segundoAdversario:string
-    }
-	primeiroQuadro:{
-        primeiroColisao:string,
-        primeiroAdversario:string
-    }
-	
+interface ICreateScoreboardRepositoryPropsDTO {
+
+	dataPartida: string
+	segundoQuadro: {
+		segundoColisao: string,
+		segundoAdversario: string
+	}
+	primeiroQuadro: {
+		primeiroColisao: string,
+		primeiroAdversario: string
+	}
+
 }
 
-export class ScoreboardRepository implements IScoreboardRepository{
-	private scoreboards:Scoreboard[]
-    
-	constructor(){
+export class ScoreboardRepository implements IScoreboardRepository {
+	private scoreboards: Scoreboard[]
+	private static INSTANCE: ScoreboardRepository
+	private constructor() {
 		this.scoreboards = []
 	}
-    
-	create({dataPartida,segundoQuadro,primeiroQuadro}:ICreateScoreboardRepositoryPropsDTO):void{
-		const scoreboard =  new  Scoreboard() 
-		Object.assign(scoreboard,{
+	public static getInstnce(): ScoreboardRepository {
+		if (!ScoreboardRepository.INSTANCE) {
+			ScoreboardRepository.INSTANCE = new ScoreboardRepository()
+		}
+		return ScoreboardRepository.INSTANCE
+	}
+
+	create({ dataPartida, segundoQuadro, primeiroQuadro }: ICreateScoreboardRepositoryPropsDTO): void {
+		const scoreboard = new Scoreboard()
+		Object.assign(scoreboard, {
 			dataPartida,
 			segundoQuadro,
 			primeiroQuadro,
 		})
-	
+
 		this.scoreboards.push(scoreboard)
-	} 
-	list():Scoreboard[]{
+	}
+	list(): Scoreboard[] {
 		return this.scoreboards
 	}
-	findByDate(dataPartida:string):Scoreboard{
-		const scoreboard = this.scoreboards.find((data)=> data.dataPartida === dataPartida) 
-		return scoreboard		
+	findByDate(dataPartida: string): Scoreboard {
+		const scoreboard = this.scoreboards.find((data) => data.dataPartida === dataPartida)
+		return scoreboard
 	}
 }

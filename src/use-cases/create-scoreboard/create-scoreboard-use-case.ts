@@ -10,12 +10,9 @@ interface ICreateScoreboardService {
     primeiroColisao: string,
     primeiroAdversario: string
   }
-
 }
 export class CreateScoreboardUseCase {
-  constructor(private scoreboardRepository: IScoreboardRepository) {
-
-  }
+  constructor(private scoreboardRepository: IScoreboardRepository) { }
   execute({ dataPartida, segundoQuadro, primeiroQuadro }: ICreateScoreboardService): void {
     const scoreboardAlReadyExists = this.scoreboardRepository.findByDate(dataPartida)
     if (scoreboardAlReadyExists) {
