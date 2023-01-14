@@ -1,7 +1,8 @@
 import express, { NextFunction, Request, Response } from 'express'
+import "express-async-errors"
 import swaggerUI from 'swagger-ui-express'
 import { AppError } from './error/AppError'
-import { router } from './routes'
+import { router } from './infra/routes'
 import swaggerFile from './swagger.json'
 const app = express()
 
@@ -21,4 +22,4 @@ app.use((error: Error, req: Request, res: Response, next: NextFunction) => {
 }
 
 )
-export {app}
+export { app }

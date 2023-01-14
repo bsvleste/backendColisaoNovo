@@ -1,0 +1,11 @@
+import { scoreboardRoutes } from './scoreboard.routes'
+import { Router } from 'express'
+import { playerRouters } from './player.routes'
+import { bidRouters } from './bid.routes'
+import { authenticationRouters } from './authentication.routes'
+export const router = Router()
+
+router.use('/scoreboards', scoreboardRoutes)
+router.use('/players', playerRouters)
+router.use('/bids', bidRouters)
+router.use('/authentication', authenticationRouters)
